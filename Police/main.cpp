@@ -68,6 +68,11 @@ public:
 		strftime(formatted, SIZE, "%R %e.%m.%Y", &time);
 		return formatted;
 	}
+	const time_t get_timestamp()const
+	{
+		tm copy = time;
+		return mktime(&copy);
+	}
 	//void set_license_plate(const std::string& license_plate)
 	//{
 	//	this->license_plate = license_plate;
@@ -127,10 +132,15 @@ public:
 	}
 };
 
-
 std::ostream& operator<<(std::ostream& os, const Crime& obj)
 {
 	return os << obj.get_time() << ":\t" << obj.get_place() << " - " << obj.get_viovation();
+}
+
+std::ofstream& operator<<(std::ofstream& of, const Crime& obj)
+{
+	of << obj.get_violation_id() << " " << obj.get_timestamp() << " " << obj.get_place() /*<< " - " << obj.get_viovation()*/;
+	return of;
 }
 
 void print(const std::map<std::string, std::list<Crime>>& database);
@@ -150,6 +160,8 @@ void main()
 		{"a001aa", {Crime(10, "Ул. Пролетраская", "21:50 1.08.2024"), Crime(9, "Ул. Пролетраская", "21:50 1.08.2024"), Crime(11, "Ул. Пролетраская", "21:50 1.08.2024"), Crime(11, "Ул. Пролетраская", "21:55 1.08.2024")}}
 	};
 	print(database);
+	Write_to_file(database, "database.txt");
+	//Read_from_file("database.txt");
 
 }
 
@@ -172,12 +184,14 @@ void Write_to_file(std::map<std::string, std::list<Crime>>& database, const std:
 	fout.open(file_name);
 	for (std::map<std::string, std::list<Crime>>::iterator map_it = database.begin(); map_it != database.end(); ++map_it)
 	{
-		fout << map_it->first << ":\n";
+		fout << map_it->first << ":\t";
 		for (std::list<Crime>::iterator it = map_it->second.begin(); it != map_it->second.end(); ++it)
 		{
-			fout << "\t" << *it << endl;
+			fout << *it << ",";
 		}
-		fout << delimeter << endl;
+		fout.seekp(-1, std::ios::cur); //Метод seelp(offset, direction) задает позицию курсора записи(p - put)
+									   //-1 смещение на один символ обратно, std::ios:cur - показывает что смещение производится от текующей позиции курсора
+		fout << ";\n";
 	}
 	fout.close();
 	std::string cmd = "notepad " + file_name;
