@@ -16,6 +16,31 @@ using std::endl;
 #define tab "\t"
 #define delimeter "\n|---------------------------|\n"
 
+#define Enter		13
+#define Escape		27
+#define UP_ARROW	72
+#define DOWN_ARROW	80
+
+const char* MENU_TIEMS[] =
+{
+	"1. Загрузить базу данных из файла",
+	"2. Сохранить базу даных в файл",
+	"3. Вывести базу данных на экран",
+	"4. Вывести информацию по номер",
+	"5. Добавить нарушение",
+};
+const int MENU_SIZE = sizeof(MENU_TIEMS) / sizeof(MENU_TIEMS[0]);
+
+//const std::map<int, std::string> MENU_ITEMS =
+//{
+//	{1, "Загрузить базу данных из файла"},
+//	{2, "Сохранить базу даных в файл"},
+//	{3, "Вывести базу данных на экран"},
+//	{4, "Вывести информацию по номер"},
+//	{5, "Добавить нарушение"},
+//}
+
+
 const std::map<int, std::string> VIOLATIONS =
 {
 	{0, "N/A"},
@@ -162,13 +187,14 @@ std::istream& operator>>(std::istream& is, Crime& obj)
 	obj.set_place(place);
 	return is;
 }
-
+int menu();
+void action();
 void print(const std::map<std::string, std::list<Crime>>& database);
 void Write_to_file(std::map<std::string, std::list<Crime>>& database, const std::string file_name);
 std::map<std::string, std::list<Crime>> Read_from_file(const std::string& file_name);
 
 //#define SAVE_CHECK
-#define LOAD_CHECK
+//#define LOAD_CHECK
 
 void main()
 {
@@ -189,6 +215,41 @@ void main()
 	std::map<std::string, std::list<Crime>> database = Read_from_file("database.txt");
 	print(database);
 #endif // LOAD_CHECK
+	
+	do {
+		switch (menu());
+		{}
+	} while (true);
+}
+int menu()
+{
+	int selcted_item = 0; 
+	char key;
+	do
+	{
+		for (int i = 0; i < MENU_SIZE; i++)
+		{
+			cout << (i == selcted_item ? "[" : " ");
+			cout.width(32);
+			cout << std::left;
+			cout << MENU_TIEMS[i];
+			cout << (i == selcted_item ? "]" : " ");
+			cout << endl;
+		}
+		key = _getch();
+		switch (key)
+		{
+		case UP_ARROW:	 if (selcted_item > 0)selcted_item--; break;
+		case DOWN_ARROW: if (selcted_item < MENU_SIZE - 1)selcted_item++; break;
+		case Enter:		 return selcted_item + 1;
+		case Escape:	 return 0;
+		}
+		system("CLS");
+	} while (key != Escape);
+	return selcted_item;
+}
+void action(int seleted_item)
+{
 
 }
 
