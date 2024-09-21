@@ -1,4 +1,5 @@
 #define _CRT_SECURE_NO_WARNINGS
+#include<Windows.h>
 #include<iostream>
 #include<fstream>
 #include<map>
@@ -21,24 +22,24 @@ using std::endl;
 #define UP_ARROW	72
 #define DOWN_ARROW	80
 
-const char* MENU_TIEMS[] =
-{
-	"1. Загрузить базу данных из файла",
-	"2. Сохранить базу даных в файл",
-	"3. Вывести базу данных на экран",
-	"4. Вывести информацию по номер",
-	"5. Добавить нарушение",
-};
-const int MENU_SIZE = sizeof(MENU_TIEMS) / sizeof(MENU_TIEMS[0]);
-
-//const std::map<int, std::string> MENU_ITEMS =
+//const char* MENU_TIEMS[] =
 //{
-//	{1, "Загрузить базу данных из файла"},
-//	{2, "Сохранить базу даных в файл"},
-//	{3, "Вывести базу данных на экран"},
-//	{4, "Вывести информацию по номер"},
-//	{5, "Добавить нарушение"},
-//}
+//	"1. Загрузить базу данных из файла",
+//	"2. Сохранить базу даных в файл",
+//	"3. Вывести базу данных на экран",
+//	"4. Вывести информацию по номер",
+//	"5. Добавить нарушение",
+//};
+//const int MENU_SIZE = sizeof(MENU_TIEMS) / sizeof(MENU_TIEMS[0]);
+
+const std::map<int, std::string> MENU_ITEMS =
+{
+	{1, "Загрузить базу данных из файла"},
+	{2, "Сохранить базу даных в файл"},
+	{3, "Вывести базу данных на экран"},
+	{4, "Вывести информацию по номер"},
+	{5, "Добавить нарушение"},
+};
 
 
 const std::map<int, std::string> VIOLATIONS =
@@ -188,7 +189,6 @@ std::istream& operator>>(std::istream& is, Crime& obj)
 	return is;
 }
 int menu();
-void action();
 void print(const std::map<std::string, std::list<Crime>>& database);
 void Write_to_file(std::map<std::string, std::list<Crime>>& database, const std::string file_name);
 std::map<std::string, std::list<Crime>> Read_from_file(const std::string& file_name);
@@ -215,42 +215,53 @@ void main()
 	std::map<std::string, std::list<Crime>> database = Read_from_file("database.txt");
 	print(database);
 #endif // LOAD_CHECK
-	
-	do {
-		switch (menu());
-		{}
+	std::map<std::string, std::list<Crime>> database = Read_from_file("database.txt");
+	do 
+	{
+		switch (menu())
+		{
+		case 0: return;
+		case 1: database = Read_from_file("database.txt");				   break;
+		case 2: Write_to_file(database, "database.txt");				   break;
+		case 3: print(database);										   break;
+		case 4: cout << "Скоро будет" << endl;system("PAUSE");			   break;
+		case 5: cout << "Скоро будет" << endl;system("PAUSE");			   break;
+		}
 	} while (true);
 }
 int menu()
 {
-	int selcted_item = 0; 
+	int selcted_item = 1; 
 	char key;
 	do
 	{
-		for (int i = 0; i < MENU_SIZE; i++)
+		system("CLS");
+		HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+		for (int i = 1; i <= MENU_ITEMS.size(); i++)
 		{
 			cout << (i == selcted_item ? "[" : " ");
+			cout << i << ". ";
 			cout.width(32);
 			cout << std::left;
-			cout << MENU_TIEMS[i];
-			cout << (i == selcted_item ? "]" : " ");
+			if(i == selcted_item)SetConsoleTextAttribute(hConsole, 0x70);
+			cout << MENU_ITEMS.at(i);
+			SetConsoleTextAttribute(hConsole, 0x07);
+			cout << (i == selcted_item ? "  ]" : " ");
 			cout << endl;
 		}
 		key = _getch();
 		switch (key)
 		{
-		case UP_ARROW:	 if (selcted_item > 0)selcted_item--; break;
-		case DOWN_ARROW: if (selcted_item < MENU_SIZE - 1)selcted_item++; break;
-		case Enter:		 return selcted_item + 1;
+		case UP_ARROW:	/* if (selcted_item > 1)*/selcted_item--; break;
+		case DOWN_ARROW: /*if (selcted_item < MENU_ITEMS.size())*/selcted_item++; break;
+		case Enter:		 return selcted_item;
 		case Escape:	 return 0;
 		}
-		system("CLS");
+		if (selcted_item == MENU_ITEMS.size() + 1)selcted_item = 1;
+		if (selcted_item == 0)selcted_item = MENU_ITEMS.size();
+		//system("PAUSE");
 	} while (key != Escape);
 	return selcted_item;
-}
-void action(int seleted_item)
-{
-
 }
 
 void print(const std::map<std::string, std::list<Crime>>& database)
@@ -265,6 +276,7 @@ void print(const std::map<std::string, std::list<Crime>>& database)
 		cout << delimeter << endl;
 	}
 	cout << "Количество номеров в базе данных: " << database.size() << endl;
+	system("PAUSE");
 }
 
 void Write_to_file(std::map<std::string, std::list<Crime>>& database, const std::string file_name)
@@ -324,5 +336,6 @@ std::map<std::string, std::list<Crime>> Read_from_file(const std::string& file_n
 	{
 		std::cerr << "Error: file " << file_name << " not found" << endl;
 	}
+	system("PAUSE");
 	return database;
 }
