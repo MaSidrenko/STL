@@ -3,6 +3,8 @@
 #include<vector>
 #include<deque>
 #include<list>
+#include<string>
+#include<string.h>
 #include<iterator>
 
 using std::cout;
@@ -14,7 +16,7 @@ using std::endl;
 
 //#define STL_ARRAY
 //#define STL_VECTOR
-#define STL_LIST
+//#define STL_LIST
 
 
 template<typename T>void vector_info(const std::vector<T>& vec);
@@ -118,7 +120,22 @@ void main()
 	list.insert(position, value);
 	for (int i : list)cout << i << tab; cout << endl;
 #endif // STL_LIST
-
+	int rev = 0;
+	int cur = 121;
+	while (cur > 0)
+	{
+		int d = cur % 10;
+		cout << d << ":" << tab << endl;
+		cur /= 10;
+		cout << cur << "," << tab << endl;
+		rev = rev * 10 + d;
+		cout << rev << ";" << tab << endl;
+		if (rev == cur)
+		{
+			//return true;
+		}
+	}
+	
 }
 template<typename T>void vector_info(const std::vector<T>& vec)
 {

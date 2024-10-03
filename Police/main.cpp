@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+п»ї#define _CRT_SECURE_NO_WARNINGS
 #include<Windows.h>
 #include<iostream>
 #include<fstream>
@@ -24,43 +24,43 @@ using std::endl;
 
 //const char* MENU_TIEMS[] =
 //{
-//	"1. Загрузить базу данных из файла",
-//	"2. Сохранить базу даных в файл",
-//	"3. Вывести базу данных на экран",
-//	"4. Вывести информацию по номер",
-//	"5. Добавить нарушение",
+//	"1. Р—Р°РіСЂСѓР·РёС‚СЊ Р±Р°Р·Сѓ РґР°РЅРЅС‹С… РёР· С„Р°Р№Р»Р°",
+//	"2. РЎРѕС…СЂР°РЅРёС‚СЊ Р±Р°Р·Сѓ РґР°РЅС‹С… РІ С„Р°Р№Р»",
+//	"3. Р’С‹РІРµСЃС‚Рё Р±Р°Р·Сѓ РґР°РЅРЅС‹С… РЅР° СЌРєСЂР°РЅ",
+//	"4. Р’С‹РІРµСЃС‚Рё РёРЅС„РѕСЂРјР°С†РёСЋ РїРѕ РЅРѕРјРµСЂ",
+//	"5. Р”РѕР±Р°РІРёС‚СЊ РЅР°СЂСѓС€РµРЅРёРµ",
 //};
 //const int MENU_SIZE = sizeof(MENU_TIEMS) / sizeof(MENU_TIEMS[0]);
 
 const std::map<int, std::string> MENU_ITEMS =
 {
-	{1, "Загрузить базу данных из файла"},
-	{2, "Сохранить базу даных в файл"},
-	{3, "Вывести базу данных на экран"},
-	{4, "Вывести информацию по номер"},
-	{5, "Добавить нарушение"},
+	{1, "Р—Р°РіСЂСѓР·РёС‚СЊ Р±Р°Р·Сѓ РґР°РЅРЅС‹С… РёР· С„Р°Р№Р»Р°"},
+	{2, "РЎРѕС…СЂР°РЅРёС‚СЊ Р±Р°Р·Сѓ РґР°РЅС‹С… РІ С„Р°Р№Р»"},
+	{3, "Р’С‹РІРµСЃС‚Рё Р±Р°Р·Сѓ РґР°РЅРЅС‹С… РЅР° СЌРєСЂР°РЅ"},
+	{4, "Р’С‹РІРµСЃС‚Рё РёРЅС„РѕСЂРјР°С†РёСЋ РїРѕ РЅРѕРјРµСЂСѓ"},
+	{5, "Р”РѕР±Р°РІРёС‚СЊ РЅР°СЂСѓС€РµРЅРёРµ"},
 };
 
 
 const std::map<int, std::string> VIOLATIONS =
 {
 	{0, "N/A"},
-	{1, "Ремень безопасности"},
-	{2, "Парковка в не положеном месте"},
-	{3, "Пересечение сплошной"},
-	{4, "Превыгение скорости"},
-	{5, "Отсутсвие водительский прав"},
-	{6, "Отсуствие права управелниея автомобилем"},
-	{7, "Отсутсвие страховки"},
-	{8, "Проез на красный свет"},
-	{9, "Выезд на встречную полосу"},
-	{10, "Дрифт на перекрестке"},
-	{11, "Езда в не трезвом состоянии"},
-	{12, "Оскорбление офицера"},
-	{13, "Внесение изменений в конструкцию автомобиля"},
-	{14, "Перевозка негаборитного груза"},
-	{15, "Превышение маскимальной нагрузки на ось"},
-	{16, "Перевозка ребенка без кресла"}
+	{1, "Р РµРјРµРЅСЊ Р±РµР·РѕРїР°СЃРЅРѕСЃС‚Рё"},
+	{2, "РџР°СЂРєРѕРІРєР° РІ РЅРµ РїРѕР»РѕР¶РµРЅРѕРј РјРµСЃС‚Рµ"},
+	{3, "РџРµСЂРµСЃРµС‡РµРЅРёРµ СЃРїР»РѕС€РЅРѕР№"},
+	{4, "РџСЂРµРІС‹РіРµРЅРёРµ СЃРєРѕСЂРѕСЃС‚Рё"},
+	{5, "РћС‚СЃСѓС‚СЃРІРёРµ РІРѕРґРёС‚РµР»СЊСЃРєРёР№ РїСЂР°РІ"},
+	{6, "РћС‚СЃСѓСЃС‚РІРёРµ РїСЂР°РІР° СѓРїСЂР°РІРµР»РЅРёРµСЏ Р°РІС‚РѕРјРѕР±РёР»РµРј"},
+	{7, "РћС‚СЃСѓС‚СЃРІРёРµ СЃС‚СЂР°С…РѕРІРєРё"},
+	{8, "РџСЂРѕРµР· РЅР° РєСЂР°СЃРЅС‹Р№ СЃРІРµС‚"},
+	{9, "Р’С‹РµР·Рґ РЅР° РІСЃС‚СЂРµС‡РЅСѓСЋ РїРѕР»РѕСЃСѓ"},
+	{10, "Р”СЂРёС„С‚ РЅР° РїРµСЂРµРєСЂРµСЃС‚РєРµ"},
+	{11, "Р•Р·РґР° РІ РЅРµ С‚СЂРµР·РІРѕРј СЃРѕСЃС‚РѕСЏРЅРёРё"},
+	{12, "РћСЃРєРѕСЂР±Р»РµРЅРёРµ РѕС„РёС†РµСЂР°"},
+	{13, "Р’РЅРµСЃРµРЅРёРµ РёР·РјРµРЅРµРЅРёР№ РІ РєРѕРЅСЃС‚СЂСѓРєС†РёСЋ Р°РІС‚РѕРјРѕР±РёР»СЏ"},
+	{14, "РџРµСЂРµРІРѕР·РєР° РЅРµРіР°Р±РѕСЂРёС‚РЅРѕРіРѕ РіСЂСѓР·Р°"},
+	{15, "РџСЂРµРІС‹С€РµРЅРёРµ РјР°СЃРєРёРјР°Р»СЊРЅРѕР№ РЅР°РіСЂСѓР·РєРё РЅР° РѕСЃСЊ"},
+	{16, "РџРµСЂРµРІРѕР·РєР° СЂРµР±РµРЅРєР° Р±РµР· РєСЂРµСЃР»Р°"}
 };
 
 class Crime
@@ -115,22 +115,22 @@ public:
 	}
 	void set_time(const std::string& time)
 	{
-		//1. Создаем временную строку для того что бы пропарсить полученную строку:
+		//1. РЎРѕР·РґР°РµРј РІСЂРµРјРµРЅРЅСѓСЋ СЃС‚СЂРѕРєСѓ РґР»СЏ С‚РѕРіРѕ С‡С‚Рѕ Р±С‹ РїСЂРѕРїР°СЂСЃРёС‚СЊ РїРѕР»СѓС‡РµРЅРЅСѓСЋ СЃС‚СЂРѕРєСѓ:
 		char* time_buffer = new char[time.size() + 1] {};
-		//2. Копируем полученную строку в буффер:
+		//2. РљРѕРїРёСЂСѓРµРј РїРѕР»СѓС‡РµРЅРЅСѓСЋ СЃС‚СЂРѕРєСѓ РІ Р±СѓС„С„РµСЂ:
 		strcpy(time_buffer, time.c_str());
-		//Ф-ция strcpy(dst, src); копирует содержимое строки источника (scr - Source) в строку получателя (dst - Destination) 
+		//Р¤-С†РёСЏ strcpy(dst, src); РєРѕРїРёСЂСѓРµС‚ СЃРѕРґРµСЂР¶РёРјРѕРµ СЃС‚СЂРѕРєРё РёСЃС‚РѕС‡РЅРёРєР° (scr - Source) РІ СЃС‚СЂРѕРєСѓ РїРѕР»СѓС‡Р°С‚РµР»СЏ (dst - Destination) 
 		
-		//3.Создаем массив для хранения элементов времени:
+		//3.РЎРѕР·РґР°РµРј РјР°СЃСЃРёРІ РґР»СЏ С…СЂР°РЅРµРЅРёСЏ СЌР»РµРјРµРЅС‚РѕРІ РІСЂРµРјРµРЅРё:
 		int time_elements[5]{};
 		int i = 0;
 		char delimiters[] = ":./ ";
 		for (char* pch = strtok(time_buffer, delimiters); pch; pch = strtok(NULL, delimiters))
 			time_elements[i++] = std::atoi(pch);
-			//Ф-ция std::atoi() 'ASCII-string to int' преобразует строку в целое число.
+			//Р¤-С†РёСЏ std::atoi() 'ASCII-string to int' РїСЂРµРѕР±СЂР°Р·СѓРµС‚ СЃС‚СЂРѕРєСѓ РІ С†РµР»РѕРµ С‡РёСЃР»Рѕ.
 		delete[] time_buffer;
 
-		//4. Сохраняем элементы времени в структуру 'tm':
+		//4. РЎРѕС…СЂР°РЅСЏРµРј СЌР»РµРјРµРЅС‚С‹ РІСЂРµРјРµРЅРё РІ СЃС‚СЂСѓРєС‚СѓСЂСѓ 'tm':
 		this->time.tm_hour = time_elements[0];
 		this->time.tm_min = time_elements[1];
 		this->time.tm_mday = time_elements[2];
@@ -188,10 +188,16 @@ std::istream& operator>>(std::istream& is, Crime& obj)
 	obj.set_place(place);
 	return is;
 }
+std::ostream& operator<<(std::ostream& os, const std::pair<int, std::string>& obj)
+{
+	return os << delimeter << "РќРѕРјРµСЂ: " << obj.first << "\tРџСЂРµСЃС‚СѓРїР»РµРЅРёРµ: " << obj.second;
+}
 int menu();
 void print(const std::map<std::string, std::list<Crime>>& database);
 void Write_to_file(std::map<std::string, std::list<Crime>>& database, const std::string file_name);
 std::map<std::string, std::list<Crime>> Read_from_file(const std::string& file_name);
+void find(const std::map<std::string, std::list<Crime>> database);
+std::map<std::string, std::list<Crime>>& add(std::map<std::string, std::list<Crime>>& database);
 
 //#define SAVE_CHECK
 //#define LOAD_CHECK
@@ -203,9 +209,9 @@ void main()
 #ifdef SAVE_CHECK
 	std::map <std::string, std::list<Crime>> database =
 	{
-		{"a777bb", {Crime(1, "Ул. Ленина", "18:10 1.09.2024"), Crime(2, "Ул. Крупской", "12:25 20.08.2024")} },
-		{"a000bb", {Crime(6, "Ул. Космонавтов", "17:50 1.08.2024"), Crime(8, "Ул. Космонавтов", "17:45 1.08.2024")} },
-		{"a001aa", {Crime(10, "Ул. Пролетраская", "21:50 1.08.2024"), Crime(9, "Ул. Пролетраская", "21:50 1.08.2024"), Crime(11, "Ул. Пролетраская", "21:50 1.08.2024"), Crime(11, "Ул. Пролетраская", "21:55 1.08.2024")}}
+		{"a777bb", {Crime(1, "РЈР». Р›РµРЅРёРЅР°", "18:10 1.09.2024"), Crime(2, "РЈР». РљСЂСѓРїСЃРєРѕР№", "12:25 20.08.2024")} },
+		{"a000bb", {Crime(6, "РЈР». РљРѕСЃРјРѕРЅР°РІС‚РѕРІ", "17:50 1.08.2024"), Crime(8, "РЈР». РљРѕСЃРјРѕРЅР°РІС‚РѕРІ", "17:45 1.08.2024")} },
+		{"a001aa", {Crime(10, "РЈР». РџСЂРѕР»РµС‚СЂР°СЃРєР°СЏ", "21:50 1.08.2024"), Crime(9, "РЈР». РџСЂРѕР»РµС‚СЂР°СЃРєР°СЏ", "21:50 1.08.2024"), Crime(11, "РЈР». РџСЂРѕР»РµС‚СЂР°СЃРєР°СЏ", "21:50 1.08.2024"), Crime(11, "РЈР». РџСЂРѕР»РµС‚СЂР°СЃРєР°СЏ", "21:55 1.08.2024")}}
 	};
 	//print(database);
 	Write_to_file(database, "database.txt");
@@ -215,20 +221,56 @@ void main()
 	std::map<std::string, std::list<Crime>> database = Read_from_file("database.txt");
 	print(database);
 #endif // LOAD_CHECK
+	
 	std::map<std::string, std::list<Crime>> database = Read_from_file("database.txt");
 	do 
 	{
 		switch (menu())
 		{
 		case 0: return;
-		case 1: database = Read_from_file("database.txt");				   break;
+		case 1: database = Read_from_file("database.txt");print(database); break;
 		case 2: Write_to_file(database, "database.txt");				   break;
 		case 3: print(database);										   break;
-		case 4: cout << "Скоро будет" << endl;system("PAUSE");			   break;
-		case 5: cout << "Скоро будет" << endl;system("PAUSE");			   break;
+		case 4: find(database);											   break;
+		case 5: cout << "РЎРєРѕСЂРѕ Р±СѓРґРµС‚" << endl;system("PAUSE");			   break;
 		}
 	} while (true);
 }
+std::map<std::string, std::list<Crime>>& add(std::map<std::string, std::list<Crime>>& database)
+{
+	std::map <std::string, std::list<Crime>>::iterator it = database.begin();
+	std::string licence_plate;
+	cout << "Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ Р°РІС‚РѕРјРѕР±РёР»СЏ: ";cin >> licence_plate;
+	int violation_id;
+	cout << "Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ РїСЂРµСЃС‚СѓРїР»РµРЅРёСЏ РёР· СЃРїРёСЃРєР°: ";
+	for (std::pair<int, std::string> i : VIOLATIONS)cout << i;
+	cin >> violation_id;
+	std::string place;
+	cout << "Р’РІРµРґРёС‚Рµ РіРґРµ Р±С‹Р»Рѕ СЃРѕРІРµСЂС€РµРЅРѕ РїСЂРµСЃС‚СѓРїР»РµРЅРёРµ: "; std::getline(cin, place);
+	std::string time;
+	cout << "Р’РІРµРґРёС‚Рµ РєРѕРіРґР° Р±С‹Р»Рѕ СЃРѕРІРµСЂС€РµРЅРѕ РїСЂРµСЃС‚СѓРїР»РµРЅРёРµ: "; std::getline(cin, place);
+	Crime crime(violation_id, place, time);
+
+	//database.insert(std::pair<std::string, std::list<Crime>>(licence_plate, crime));
+	return database;
+}
+
+void find(const std::map<std::string, std::list<Crime>> database)
+{
+	std::string licence_plate;
+	std::map<std::string, std::list<Crime>>::iterator it;
+	cout << "Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ Р°РІС‚РѕРјРѕР±РёР»СЏ: "; cin >> licence_plate; 
+	for (std::map<std::string, std::list<Crime>>::const_iterator m_it = database.find(licence_plate); m_it == database.find(licence_plate); ++m_it)
+	{
+		cout << m_it->first << ":\n";
+		for (std::list<Crime>::const_iterator it = m_it->second.begin(); it != m_it->second.end(); ++it)
+		{
+			cout << *it << endl;
+		}
+	}
+	system("PAUSE");
+}
+
 int menu()
 {
 	int selcted_item = 1; 
@@ -275,7 +317,7 @@ void print(const std::map<std::string, std::list<Crime>>& database)
 		}
 		cout << delimeter << endl;
 	}
-	cout << "Количество номеров в базе данных: " << database.size() << endl;
+	cout << "РљРѕР»РёС‡РµСЃС‚РІРѕ РЅРѕРјРµСЂРѕРІ РІ Р±Р°Р·Рµ РґР°РЅРЅС‹С…: " << database.size() << endl;
 	system("PAUSE");
 }
 
@@ -290,8 +332,8 @@ void Write_to_file(std::map<std::string, std::list<Crime>>& database, const std:
 		{
 			fout << *it << ",";
 		}
-		//fout.seekp(-1, std::ios::cur); //Метод seelp(offset, direction) задает позицию курсора записи(p - put)
-									   //-1 смещение на один символ обратно, std::ios:cur - показывает что смещение производится от текующей позиции курсора
+		//fout.seekp(-1, std::ios::cur); //РњРµС‚РѕРґ seelp(offset, direction) Р·Р°РґР°РµС‚ РїРѕР·РёС†РёСЋ РєСѓСЂСЃРѕСЂР° Р·Р°РїРёСЃРё(p - put)
+									   //-1 СЃРјРµС‰РµРЅРёРµ РЅР° РѕРґРёРЅ СЃРёРјРІРѕР» РѕР±СЂР°С‚РЅРѕ, std::ios:cur - РїРѕРєР°Р·С‹РІР°РµС‚ С‡С‚Рѕ СЃРјРµС‰РµРЅРёРµ РїСЂРѕРёР·РІРѕРґРёС‚СЃСЏ РѕС‚ С‚РµРєСѓСЋС‰РµР№ РїРѕР·РёС†РёРё РєСѓСЂСЃРѕСЂР°
 		//fout << ";\n"
 		fout << endl;
 	}
@@ -336,6 +378,6 @@ std::map<std::string, std::list<Crime>> Read_from_file(const std::string& file_n
 	{
 		std::cerr << "Error: file " << file_name << " not found" << endl;
 	}
-	system("PAUSE");
+	//system("PAUSE");
 	return database;
 }

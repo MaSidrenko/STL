@@ -14,26 +14,27 @@ void main()
 {
 	setlocale(LC_ALL, "");
 #ifdef STL_MAP
-	std::multimap<int, std::string> week =
+	std::map<int, std::string> week =
 	{
 		std::pair<int, std::string>(0, "Sunday"),
 		std::pair<int, std::string>(1, "Monday"),
 		std::pair<int, std::string>(2, "Tuesday"),
-		std::pair<int, std::string>(4, "Wednsday"),
-		{4,"Thursday"},
-		{5,"Friday"},
-		{5,"Friday"},
-		{5,"Friday"},
-		{5,"Friday"},
-		{5,"Friday"},
-		{5,"Friday"},
-		{5,"Friday"},
-		{6,"Sturday"}
+		std::pair<int, std::string>(3, "Wednsday"),
 	};
 	
-	for (std::map<int, std::string>::iterator it = week.begin(); it != week.end(); ++it)
+	/*for (std::map<int, std::string>::iterator it = week.begin(); it != week.end(); ++it)
 	{
 		cout << it->first << tab << it->second << endl;
+	}*/
+	double a;
+	cin >> a;
+	if (a / 2 == 0)
+	{
+		cout << "1";
+	}
+	else
+	{
+		cout << 0;
 	}
 #endif // STL_MAP
 
